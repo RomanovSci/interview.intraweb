@@ -1,6 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "interview.intraweb",
+    "description": "Simple telegram bot project",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
