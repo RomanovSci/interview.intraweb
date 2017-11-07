@@ -1078,7 +1078,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(46);
+module.exports = __webpack_require__(51);
 
 
 /***/ }),
@@ -49906,13 +49906,13 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(56)
+  __webpack_require__(44)
 }
 var normalizeComponent = __webpack_require__(10)
 /* script */
-var __vue_script__ = __webpack_require__(44)
+var __vue_script__ = __webpack_require__(49)
 /* template */
-var __vue_template__ = __webpack_require__(45)
+var __vue_template__ = __webpack_require__(50)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -49953,367 +49953,46 @@ module.exports = Component.exports
 
 /***/ }),
 /* 44 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            subscribers: [],
-            paginate: ['subscribers'],
-
-            messageFieldIsOpen: false,
-            message: null
-        };
-    },
-
-
-    /**
-     * Get all subscribers
-     * @return void
-     */
-    mounted: function mounted() {
-        var _this = this;
-
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('subscribers').then(function (_ref) {
-            var data = _ref.data;
-
-            data.forEach(function (subscriberData) {
-                subscriberData.isSelected = false;
-                _this.subscribers.push(subscriberData);
-            });
-        });
-    },
-
-
-    methods: {
-
-        /**
-         * Open form for sending message
-         * @return void
-         */
-        openMessageForm: function openMessageForm() {
-            var selected = this.subscribers.filter(function (subscriber) {
-                return subscriber.isSelected;
-            });
-
-            this.messageFieldIsOpen = selected.length;
-        },
-
-
-        /**
-         * Send message to selected users
-         * @return void
-         */
-        sendToSelected: function sendToSelected() {
-            var _this2 = this;
-
-            var ids = [];
-
-            this.subscribers.forEach(function (subscriber) {
-                if (subscriber.isSelected) {
-                    ids.push(subscriber.id);
-                }
-            });
-
-            if (!ids.length || !this.message) {
-                return;
-            }
-
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/bot/broadcast', {
-                ids: ids,
-                message: this.message
-            }).then(function () {
-                _this2.message = null;
-            });
-        },
-
-
-        /**
-         * Delete selected users
-         * @return void
-         */
-        deleteSelected: function deleteSelected() {
-            var _this3 = this;
-
-            this.subscribers.forEach(function (subscriber) {
-
-                if (!subscriber.isSelected) {
-                    return;
-                }
-
-                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/subscriber/' + subscriber.id).then(function (_ref2) {
-                    var data = _ref2.data;
-
-
-                    if (data.hasOwnProperty('success') && data.success) {
-                        _this3.subscribers = _.filter(_this3.subscribers, function (current) {
-                            return current.id != data.id;
-                        });
-                    }
-                });
-            });
-        }
-    }
-});
+// load the styles
+var content = __webpack_require__(45);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(47)("68cf139e", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c4ffe448\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c4ffe448\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 text-center" }, [
-        _c("h1", [
-          _vm._v(
-            "Telegram subscribers [" + _vm._s(_vm.subscribers.length) + "]"
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(0)
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-4 col-md-offset-4 text-center" },
-        [
-          _c(
-            "paginate",
-            { attrs: { name: "subscribers", list: _vm.subscribers, per: 5 } },
-            _vm._l(_vm.paginated("subscribers"), function(subscriber) {
-              return _c("li", { staticClass: "list-group-item" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: subscriber.isSelected,
-                      expression: "subscriber.isSelected"
-                    }
-                  ],
-                  attrs: { type: "checkbox" },
-                  domProps: {
-                    checked: Array.isArray(subscriber.isSelected)
-                      ? _vm._i(subscriber.isSelected, null) > -1
-                      : subscriber.isSelected
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = subscriber.isSelected,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (subscriber.isSelected = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (subscriber.isSelected = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.$set(subscriber, "isSelected", $$c)
-                      }
-                    }
-                  }
-                }),
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(subscriber.telegram_username) +
-                    "\n                    [" +
-                    _vm._s(subscriber.id) +
-                    "]\n                "
-                )
-              ])
-            })
-          ),
-          _vm._v(" "),
-          _c("paginate-links", {
-            attrs: { for: "subscribers", "show-step-links": true }
-          })
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 text-center" }, [
-        _c("input", {
-          staticClass: "btn btn-default",
-          attrs: { type: "button", value: "Send message to selected" },
-          on: { click: _vm.openMessageForm }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", value: "Delete selected" },
-          on: { click: _vm.deleteSelected }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-12 text-center" }, [
-        _vm.messageFieldIsOpen
-          ? _c("div", [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.message,
-                    expression: "message"
-                  }
-                ],
-                attrs: { placeholder: "Type message here..." },
-                domProps: { value: _vm.message },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.message = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "btn btn-success",
-                attrs: { type: "button", value: "Send" },
-                on: { click: _vm.sendToSelected }
-              })
-            ])
-          : _vm._e()
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _vm._v(
-        "List of people what subscribed to your channel. You can send message to all subscribers on "
-      ),
-      _c("a", { attrs: { href: "/broadcast" } }, [_vm._v("broadcast")]),
-      _vm._v(" page")
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c4ffe448", module.exports)
-  }
-}
+exports = module.exports = __webpack_require__(46)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.paginate-links li {\n    display: inline-block;\n    position: relative;\n    padding: 10px 15px;\n    margin-bottom: -1px;\n    background-color: #fff;\n    border: 1px solid #d3e0e9;\n}\n.paginate-links li.disabled{\n    background-color: #eaeaea;\n}\n.paginate-links li.active{\n    background-color: #abe4ff;\n}\n.paginate-links li a{\n    cursor: pointer;\n    color: #7b8285;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 /* 46 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 47 */,
-/* 48 */
 /***/ (function(module, exports) {
 
 /*
@@ -50395,54 +50074,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(57);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(58)("68cf139e", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c4ffe448\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c4ffe448\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./index.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(48)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.paginate-links li {\n    display: inline-block;\n    position: relative;\n    padding: 10px 15px;\n    margin-bottom: -1px;\n    background-color: #fff;\n    border: 1px solid #d3e0e9;\n}\n.paginate-links li.disabled{\n    background-color: #eaeaea;\n}\n.paginate-links li.active{\n    background-color: #abe4ff;\n}\n.paginate-links li a{\n    cursor: pointer;\n    color: #7b8285;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 58 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -50461,7 +50093,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(59)
+var listToStyles = __webpack_require__(48)
 
 /*
 type StyleObject = {
@@ -50663,7 +50295,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 59 */
+/* 48 */
 /***/ (function(module, exports) {
 
 /**
@@ -50694,6 +50326,366 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 49 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            subscribers: [],
+            paginate: ['subscribers'],
+
+            messageFieldIsOpen: false,
+            message: null
+        };
+    },
+
+
+    /**
+     * Get all subscribers
+     * @return void
+     */
+    mounted: function mounted() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('subscribers').then(function (_ref) {
+            var data = _ref.data;
+
+            data.forEach(function (subscriberData) {
+                subscriberData.isSelected = false;
+                _this.subscribers.push(subscriberData);
+            });
+        });
+    },
+
+
+    methods: {
+
+        /**
+         * Open form for sending message
+         * @return void
+         */
+        openMessageForm: function openMessageForm() {
+            var selected = this.subscribers.filter(function (subscriber) {
+                return subscriber.isSelected;
+            });
+
+            this.messageFieldIsOpen = selected.length;
+        },
+
+
+        /**
+         * Send message to selected users
+         * @return void
+         */
+        sendToSelected: function sendToSelected() {
+            var _this2 = this;
+
+            var ids = [];
+
+            this.subscribers.forEach(function (subscriber) {
+                if (subscriber.isSelected) {
+                    ids.push(subscriber.id);
+                }
+            });
+
+            if (!ids.length || !this.message) {
+                return;
+            }
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/bot/broadcast', {
+                ids: ids,
+                message: this.message
+            }).then(function () {
+                _this2.message = null;
+            });
+        },
+
+
+        /**
+         * Delete selected users
+         * @return void
+         */
+        deleteSelected: function deleteSelected() {
+            var _this3 = this;
+
+            this.subscribers.forEach(function (subscriber) {
+
+                if (!subscriber.isSelected) {
+                    return;
+                }
+
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/subscriber/' + subscriber.id).then(function (_ref2) {
+                    var data = _ref2.data;
+
+
+                    if (data.hasOwnProperty('success') && data.success) {
+                        _this3.subscribers = _.filter(_this3.subscribers, function (current) {
+                            return current.id != data.id;
+                        });
+                    }
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 text-center" }, [
+        _c("h1", [
+          _vm._v(
+            "Telegram subscribers [" + _vm._s(_vm.subscribers.length) + "]"
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-4 col-md-offset-4 text-center" },
+        [
+          _c(
+            "paginate",
+            { attrs: { name: "subscribers", list: _vm.subscribers, per: 5 } },
+            _vm._l(_vm.paginated("subscribers"), function(subscriber) {
+              return _c("li", { staticClass: "list-group-item" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: subscriber.isSelected,
+                      expression: "subscriber.isSelected"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(subscriber.isSelected)
+                      ? _vm._i(subscriber.isSelected, null) > -1
+                      : subscriber.isSelected
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = subscriber.isSelected,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (subscriber.isSelected = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (subscriber.isSelected = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.$set(subscriber, "isSelected", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(subscriber.telegram_username) +
+                    "\n                    [" +
+                    _vm._s(subscriber.id) +
+                    "]\n                "
+                )
+              ])
+            })
+          ),
+          _vm._v(" "),
+          _c("paginate-links", {
+            attrs: { for: "subscribers", "show-step-links": true }
+          })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 text-center" }, [
+        _c("input", {
+          staticClass: "btn btn-default",
+          attrs: { type: "button", value: "Send message to selected" },
+          on: { click: _vm.openMessageForm }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", value: "Delete selected" },
+          on: { click: _vm.deleteSelected }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-12 text-center" }, [
+        _vm.messageFieldIsOpen
+          ? _c("div", [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.message,
+                    expression: "message"
+                  }
+                ],
+                attrs: { placeholder: "Type message here..." },
+                domProps: { value: _vm.message },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.message = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "btn btn-success",
+                attrs: { type: "button", value: "Send" },
+                on: { click: _vm.sendToSelected }
+              })
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v(
+        "List of people what subscribed to your channel. You can send message to all subscribers on "
+      ),
+      _c("a", { attrs: { href: "/broadcast" } }, [_vm._v("broadcast")]),
+      _vm._v(" page")
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c4ffe448", module.exports)
+  }
+}
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
