@@ -47,30 +47,6 @@ class TelegramBotService
     }
 
     /**
-     * Send message to user
-     *
-     * @param $id
-     * @param $text
-     * @return bool
-     */
-    public function sendMessage($id, $text): bool
-    {
-        try {
-            $requestURL = env('TELEGRAM_BOT_URL').env('TELEGRAM_TOKEN').'/sendMessage?'.http_build_query([
-                    'chat_id' => $id,
-                    'text' => $text,
-                ]);
-
-            return $this
-                    ->getClient()
-                    ->request('GET', $requestURL)
-                    ->getStatusCode() == 200;
-        } catch(\Exception $e) {
-            return false;
-        }
-    }
-
-    /**
      * Get certificate info request handler
      *
      * @return \Closure
@@ -94,7 +70,20 @@ class TelegramBotService
     }
 
     /**
-     * Get subscribe handler
+     * Get start request handler
+     *
+     * @return \Closure
+     */
+    public function getStartRequestHandler(): \Closure
+    {
+        return function($bot)
+        {
+            $bot->reply('Hi there!');
+        };
+    }
+
+    /**
+     * Get subscribe request handler
      *
      * @param  Request $request
      * @return \Closure

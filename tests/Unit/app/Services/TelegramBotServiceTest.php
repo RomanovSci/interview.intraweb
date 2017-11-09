@@ -64,31 +64,6 @@ class TelegramBotServiceTest extends TestCase
         $this->assertInstanceOf(Client::class, $telegramBotServiceMock->getClient());
     }
 
-    public function testSendMessage()
-    {
-        /** @var TelegramBotServiceMock $telegramBotServiceMock */
-        $telegramBotServiceMock = $this->getMockBuilder(TelegramBotServiceMock::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['getClient'])
-            ->getMock();
-
-        $telegramBotServiceMock->expects($this->once())
-            ->method('getClient')
-            ->willReturn(new class {
-                public function request()
-                {
-                    return new class {
-                        public function getStatusCode()
-                        {
-                            return 200;
-                        }
-                    };
-                }
-            });
-
-        $this->assertSame(true, $telegramBotServiceMock->sendMessage(1,'test'));
-    }
-
     public function testGetCertificateInfoRequestHandler()
     {
         /** @var TelegramBotServiceMock $telegramBotServiceMock */

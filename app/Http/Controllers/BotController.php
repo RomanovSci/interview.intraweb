@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subscriber;
+use BotMan\Drivers\Telegram\TelegramDriver;
 use Illuminate\Http\Request;
 use App\Services\TelegramBotService;
 
@@ -19,10 +20,10 @@ class BotController extends Controller
     {
         $botman = app('botman');
 
-        $botman->hears('ssl-info {domain}', $telegramBotService->getCertificateInfoRequestHandler());
-        $botman->hears('/start', function($bot) {$bot->reply('Hi there!');});
+        $botman->hears('/start', $telegramBotService->getStartRequestHandler());
         $botman->hears('/subscribe', $telegramBotService->getSubscribeRequestHandler($request));
         $botman->hears('/unsubscribe', $telegramBotService->getUnsubscribeRequestHandler($request));
+        $botman->hears('ssl-info {domain}', $telegramBotService->getCertificateInfoRequestHandler());
 
         $botman->fallback($telegramBotService->getFallbackHandler());
         $botman->listen();
@@ -31,10 +32,9 @@ class BotController extends Controller
     /**
      * Send notification to all subscribers
      *
-     * @param TelegramBotService $telegramBotService
-     * @param Request            $request
+     * @param Request $request
      */
-    public function broadcast(TelegramBotService $telegramBotService, Request $request)
+    public function broadcast(Request $request)
     {
         $userIds = $request->input('ids');
         $subscribers = Subscriber::all();
@@ -43,11 +43,12 @@ class BotController extends Controller
             $subscribers = Subscriber::find($userIds);
         }
 
-        $subscribers->each(function($subscriber) use ($telegramBotService, $request)
+        $subscribers->each(function($subscriber) use ($request)
         {
-            $telegramBotService->sendMessage(
+            app('botman')->say(
+                $request->input('message'),
                 $subscriber->telegram_id,
-                $request->input('message')
+                TelegramDriver::class
             );
         });
     }
