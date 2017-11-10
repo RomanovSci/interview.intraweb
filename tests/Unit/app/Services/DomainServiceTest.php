@@ -34,6 +34,20 @@ class DomainServiceTest extends TestCase
     {
         $domain = 'test.com';
 
+        /** @var Client $client */
+        $client = $this->getMockBuilder(Client::class)
+            ->setMethods(['request'])
+            ->getMock();
+
+        $client->expects($this->once())
+            ->method('request')
+            ->willReturn(new class {
+                public function getStatusCode()
+                {
+                    return 200;
+                }
+            });
+
         /** @var DomainServiceMock $domainServiceMock */
         $domainServiceMock = $this->getMockBuilder(DomainServiceMock::class)
             ->disableOriginalConstructor()
@@ -42,17 +56,7 @@ class DomainServiceTest extends TestCase
 
         $domainServiceMock->expects($this->once())
             ->method('getClient')
-            ->willReturn(new class {
-                public function request()
-                {
-                    return new class {
-                        public function getStatusCode()
-                        {
-                            return 200;
-                        }
-                    };
-                }
-            });
+            ->willReturn($client);
 
         $this->assertSame(true, $domainServiceMock->validate($domain));
     }
@@ -75,7 +79,7 @@ class DomainServiceMock extends DomainService
 {
     public $client;
 
-    public function getClient()
+    public function getClient(): Client
     {
         return parent::getClient();
     }

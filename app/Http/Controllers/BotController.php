@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BroadcastRequest;
 use App\Subscriber;
 use BotMan\Drivers\Telegram\TelegramDriver;
-use Illuminate\Http\Request;
 use App\Services\TelegramBotService;
 
 class BotController extends Controller
@@ -31,9 +31,9 @@ class BotController extends Controller
     /**
      * Send notification to all subscribers
      *
-     * @param Request $request
+     * @param BroadcastRequest $request
      */
-    public function broadcast(Request $request)
+    public function broadcast(BroadcastRequest $request)
     {
         $userIds = $request->input('ids');
         $subscribers = Subscriber::all();

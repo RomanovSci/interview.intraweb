@@ -91,19 +91,23 @@ class TelegramBotService
     {
         return function($bot)
         {
-            try {
-                $telegramUser = $bot->getUser();
-                $subscriber = new Subscriber();
+            $telegramUser = $bot->getUser();
 
-                $subscriber->telegram_id = $telegramUser->getId();
-                $subscriber->telegram_username = $telegramUser->getFirstName();
-
-                if ($subscriber->save()) {
-                    $bot->reply('Done ^_^');
-                }
-            } catch (\Exception $e) {
-                $bot->reply('Sorry...Not now :c');
+            if (Subscriber::where('telegram_id', $telegramUser->getId())->first()) {
+                $bot->reply('Hmmm...Already you are subscribed');
+                return;
             }
+
+            $subscriber = new Subscriber();
+            $subscriber->telegram_id = $telegramUser->getId();
+            $subscriber->telegram_username = $telegramUser->getFirstName();
+
+            if ($subscriber->save()) {
+                $bot->reply('Done ^_^');
+                return;
+            }
+
+            $bot->reply('Something went wrong');
         };
     }
 

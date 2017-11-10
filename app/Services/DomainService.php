@@ -20,7 +20,7 @@ class DomainService
      *
      * @return Client
      */
-    protected function getClient()
+    protected function getClient(): Client
     {
         return $this->client;
     }
@@ -34,9 +34,11 @@ class DomainService
     public function validate($domain): bool
     {
         try {
-            $result = $this->getClient()->request('GET', $domain, [
-                'timeout' => 5
-            ]);
+            $result = $this
+                ->getClient()
+                ->request('GET', $domain, [
+                    'timeout' => 5
+                ]);
 
             return $result->getStatusCode() == 200;
         } catch (\Exception $e) {
