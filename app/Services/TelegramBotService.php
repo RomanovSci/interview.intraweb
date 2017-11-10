@@ -85,18 +85,18 @@ class TelegramBotService
     /**
      * Get subscribe request handler
      *
-     * @param  Request $request
      * @return \Closure
      */
-    public function getSubscribeRequestHandler(Request $request): \Closure
+    public function getSubscribeRequestHandler(): \Closure
     {
-        return function($bot) use ($request)
+        return function($bot)
         {
             try {
+                $telegramUser = $bot->getUser();
                 $subscriber = new Subscriber();
 
-                $subscriber->telegram_id = $request->input('message.from.id');
-                $subscriber->telegram_username = $request->input('message.from.first_name');
+                $subscriber->telegram_id = $telegramUser->getId();
+                $subscriber->telegram_username = $telegramUser->getFirstName();
 
                 if ($subscriber->save()) {
                     $bot->reply('Done ^_^');
@@ -110,18 +110,13 @@ class TelegramBotService
     /**
      * Get unsubscribe request handler
      *
-     * @param Request $request
      * @return \Closure
      */
-    public function getUnsubscribeRequestHandler(Request $request): \Closure
+    public function getUnsubscribeRequestHandler(): \Closure
     {
-        return function($bot) use ($request)
+        return function($bot)
         {
-            Subscriber::where(
-                'telegram_id',
-                $request->input('message.from.id')
-            )->delete();
-
+            Subscriber::where('telegram_id', $bot->getUser()->getId())->delete();
             $bot->reply('Done ^_^');
         };
     }

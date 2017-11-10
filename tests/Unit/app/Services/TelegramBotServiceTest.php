@@ -86,14 +86,9 @@ class TelegramBotServiceTest extends TestCase
             ->setMethods()
             ->getMock();
 
-        /** @var Request $request */
-        $request = $this->getMockBuilder(Request::class)
-            ->setMethods()
-            ->getMock();
-
         $this->assertInstanceOf(
             \Closure::class,
-            $telegramBotServiceMock->getSubscribeRequestHandler($request)
+            $telegramBotServiceMock->getSubscribeRequestHandler()
         );
     }
 
@@ -105,14 +100,9 @@ class TelegramBotServiceTest extends TestCase
             ->setMethods()
             ->getMock();
 
-        /** @var Request $request */
-        $request = $this->getMockBuilder(Request::class)
-            ->setMethods()
-            ->getMock();
-
         $this->assertInstanceOf(
             \Closure::class,
-            $telegramBotServiceMock->getUnsubscribeRequestHandler($request)
+            $telegramBotServiceMock->getUnsubscribeRequestHandler()
         );
     }
 

@@ -12,17 +12,16 @@ class BotController extends Controller
     /**
      * Handle request to bot
      *
-     * @param Request    $request
      * @param TelegramBotService $telegramBotService
      * @return void
      */
-    public function handle(Request $request, TelegramBotService $telegramBotService)
+    public function handle(TelegramBotService $telegramBotService)
     {
         $botman = app('botman');
 
         $botman->hears('/start', $telegramBotService->getStartRequestHandler());
-        $botman->hears('/subscribe', $telegramBotService->getSubscribeRequestHandler($request));
-        $botman->hears('/unsubscribe', $telegramBotService->getUnsubscribeRequestHandler($request));
+        $botman->hears('/subscribe', $telegramBotService->getSubscribeRequestHandler());
+        $botman->hears('/unsubscribe', $telegramBotService->getUnsubscribeRequestHandler());
         $botman->hears('ssl-info {domain}', $telegramBotService->getCertificateInfoRequestHandler());
 
         $botman->fallback($telegramBotService->getFallbackHandler());
