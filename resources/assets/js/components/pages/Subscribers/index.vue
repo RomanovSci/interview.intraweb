@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <h1>Telegram subscribers [{{subscribers.length}}]</h1>
-                <p>List of people what subscribed to your channel. You can send message to all subscribers on <a href="/broadcast">broadcast</a> page</p>
+                <p>List of people what subscribed to your channel. You can send message to all subscribers on <router-link to="/broadcast">broadcast</router-link> page</p>
             </div>
         </div>
 

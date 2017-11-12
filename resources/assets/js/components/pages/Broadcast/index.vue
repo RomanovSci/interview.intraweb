@@ -4,7 +4,7 @@
             <div class="col-md-12 text-center">
                 <h1>Broadcast</h1>
                 <p>Send message to all subscribers.</p>
-                <p>You can select subscribers and send message to each of them on <a href="/">subscribers page</a></p>
+                <p>You can select subscribers and send message to each of them on <router-link to="/">subscribers page</router-link></p>
             </div>
         </div>
         <div class="row">
