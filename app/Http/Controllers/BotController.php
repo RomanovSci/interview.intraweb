@@ -42,8 +42,7 @@ class BotController extends Controller
             $subscribers = Subscriber::find($userIds);
         }
 
-        $subscribers->each(function($subscriber) use ($request)
-        {
+        $subscribers->each(function ($subscriber) use ($request) {
             app('botman')->say(
                 $request->input('message'),
                 $subscriber->telegram_id,

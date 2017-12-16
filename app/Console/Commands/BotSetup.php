@@ -43,7 +43,8 @@ class BotSetup extends Command
             'https://api.telegram.org/bot'
             .env('TELEGRAM_TOKEN')
             .'/setWebhook?url='
-            .$this->ask('Inset application url'));
+            .$this->ask('Inset application url')
+            .'/bot');
 
         $this->info($result->getBody()->getContents());
     }

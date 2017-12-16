@@ -94,7 +94,7 @@ class TelegramBotService
             $telegramUser = $bot->getUser();
 
             if (Subscriber::where('telegram_id', $telegramUser->getId())->first()) {
-                $bot->reply('Hmmm...Already you are subscribed');
+                $bot->reply('Hmmm...You are subscribed');
                 return;
             }
 
