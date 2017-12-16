@@ -10,4 +10,4 @@
 
 ## Telegram
 For telegram bot configuration you should [to forward tunel](https://ngrok.com) your local machine or deploy project to server.
-After forwording/deploying you should to set webhook for your telegram bot. Just send request to: `https://api.telegram.org/bot<TELEGRAM_TOKEN_HERE>/setWebhook?url=<PROJECT_URL>/bot`
+After forwording/deploying you should to set webhook for your telegram bot. Just send request to: `https://api.telegram.org/bot<TELEGRAM_TOKEN_HERE>/setWebhook?url=<PROJECT_URL>`
