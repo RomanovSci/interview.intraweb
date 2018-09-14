@@ -9,6 +9,5 @@
 6) Open `http://localhost:8000` in your browser
 
 ## Telegram
-For telegram bot configuration you should [to forward tunel](https://ngrok.com) your local machine or deploy the project.
-After forwording/deploying you should to set webhook for telegram bot.
+For telegram bot configuration you should publish this project. You can [forward tunel](https://ngrok.com) for your local machine or deploy application on public server. After forwording/deploying, you should to set webhook for telegram bot.
 Paste your telegram bot token to `.env` file (TELEGRAM_TOKEN property) and run the command: `php artisan bot:setup`
